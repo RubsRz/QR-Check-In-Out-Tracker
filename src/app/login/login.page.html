@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button color="primary">
+                <ion-icon slot="icon-only" name="arrow-back-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-title>LOGIN</ion-title>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div id="inputs">
+        <ion-input [(ngModel)]="username" placeholder="User" type="text"></ion-input>
+        <ion-input [(ngModel)]="password" placeholder="Password" type="password"></ion-input>
+    </div>
+    <div id="boton">
+        <ion-button (click)="login()">LOGIN</ion-button>
+    </div>
+
+    <div id="footer">
+        <h2>Create a new account</h2>
+    </div>
+</ion-content>

@@ -1,0 +1,54 @@
+ion-toolbar {
+    --background: black;
+}
+
+ion-icon {
+    color: white;
+}
+
+ion-content {
+    // width: 100vw;
+    --background: rgb(62, 55, 170);
+    --background: linear-gradient(320deg, rgb(70, 63, 172) 24%, rgba(192, 84, 170, 1) 87%);
+}
+
+#inputs {
+    padding-top: 15vh;
+}
+
+ion-input {
+    // margin-top: 40vh;
+    width: 80%;
+    height: 45px;
+    border: 1px solid black;
+    border-radius: 12px;
+    background: rgba(71, 4, 80, 0.2);
+    margin: 10%;
+    // padding: 5%;
+    // border-radius: 50%;
+    // margin: 50px;
+    color: white;
+}
+
+ion-button {
+    width: 70%;
+    margin: 15%;
+    --background: rgba(42, 197, 218, 0.746);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+#footer {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    // width: 10%;
+    // margin: 0% 0%;
+    // background-color: blue;
+    color: white;
+    // display: block;
+}
