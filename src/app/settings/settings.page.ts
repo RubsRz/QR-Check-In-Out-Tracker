@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router  } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -8,7 +8,7 @@ import { Router  } from '@angular/router';
 })
 export class SettingsPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private rutas:Router) { }
 
   ngOnInit() {
   }
@@ -16,7 +16,7 @@ export class SettingsPage implements OnInit {
 
   logOut(){
     localStorage.removeItem('userRutas');
-    this.router.navigate(['/login']);
+    this.rutas.navigate(['/login']);
   }
 
 }
