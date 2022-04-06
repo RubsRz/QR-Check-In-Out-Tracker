@@ -1,18 +1,27 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
         <ion-title>
-            Tab 1
+            Speedy transportation
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
     <h1>Bienvenido {{usuarioService.usuarioLoggeado.nombre}}</h1>
+
+    <h2 *ngIf="usuarioService.usuarioLoggeado.rol=='conductor'">
+        Eres un conductor
+    </h2>
+
+    <h2 *ngIf="usuarioService.usuarioLoggeado.rol=='admin'">
+        Eres un Admin
+    </h2>
+
     <!-- <ion-header collapse="condense">
-        <ion-toolbar>
-            <ion-title size="large">Tab 1</ion-title>
-        </ion-toolbar>
-    </ion-header> -->
+      <ion-toolbar>
+          <ion-title size="large">Tab 1</ion-title>
+      </ion-toolbar>
+  </ion-header> -->
     <!-- <h2>hola</h2> -->
     <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
 </ion-content>

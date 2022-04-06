@@ -1,17 +1,46 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title *ngIf="service.usuarioLoggeado.rol=='admin'">
+            Registrar Transición
+        </ion-title>
+
+        <ion-title *ngIf="service.usuarioLoggeado.rol=='conductor'">
+            Mis Transiciones
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <div id="container">
+        <ion-button (click)="barcodeScanner()">Scan My Code</ion-button>
+
+        <ul *ngIf="scannedOutput!=''">
+
+            <li>Nombre del conductor: {{scannedOutput.conductor}}</li>
+            <li>Marca del vehiculo: {{scannedOutput.marca}}</li>
+            <li>Modelo del vehiculo: {{scannedOutput.modelo}}</li>
+            <li>Placa del vehiculo: {{scannedOutput.placa}}</li>
+            <li>Color del vehiculo: {{scannedOutput.color}}</li>
+
+        </ul>
+    </div>
+
+    <ion-item>
+        <ion-label>Fecha</ion-label>
+        <ion-input placeholder="Fecha" value="{{ date | date: 'dd MMM yyyy, HH:mm' }}" id="date" class="ion-text-end"></ion-input>
+        <ion-popover trigger="date" size="cover">
+            <ng-template>
+                <ion-datetime presentation="time-date" [(ngModel)]="date" locale="sl-SI"></ion-datetime>
+            </ng-template>
+        </ion-popover>
+    </ion-item>
+
+    <div>
+        <ion-label>Transición</ion-label>
+        <ion-input placeholder="Entrada / Salida" [(ngModel)]="transicion"></ion-input>
+    </div>
+
+    <ion-button (click)="saveDate()">SAVE DATE</ion-button>
+
 </ion-content>
