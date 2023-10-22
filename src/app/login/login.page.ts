@@ -13,8 +13,7 @@ export class LoginPage implements OnInit {
   username: string;
   password: string;
   registrosList:any[]
-  url="http://172.20.10.4:3000/api";
-  urlcasa="http://192.168.100.23:3000/api";
+  url='http://localhost:3001/api';
 
 
   constructor(private router: Router, public service:UsuarioService, public http:HttpClient) { }
@@ -24,7 +23,7 @@ export class LoginPage implements OnInit {
 
   login() {
 
-    this.http.get(this.urlcasa+'/registros/getRegistros').subscribe(
+    this.http.get(this.url+'/registros/getRegistros').subscribe(
       (res:any)=>{
         //Aqui solo se ejecuta si respondió correctamente
         // console.log('Resgitros:',res)
@@ -37,8 +36,10 @@ export class LoginPage implements OnInit {
               usuario: this.registrosList[i].usuario,
               rol: this.registrosList[i].rol,
               id: this.registrosList[i]._id,
+              imagen: this.registrosList[i].imagen
             }
             localStorage.setItem('userRutas',JSON.stringify(infoUser));
+
             this.service.usuarioLoggeado = infoUser;
             this.router.navigate(['tabs','tab1']);
             break;

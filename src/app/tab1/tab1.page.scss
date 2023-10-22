@@ -1,0 +1,64 @@
+/* Estilos para el modo claro */
+@media (prefers-color-scheme: light) {
+    ion-item {
+      --ion-background-color: #fff;
+      --ion-text-color: #000;
+      border-bottom: 1px solid #ccc;
+    }
+  
+    p {
+      font-size: 1rem;
+      color: #000000;
+    }
+  
+    .qr-image{
+      background-color: #fff;
+    }
+  
+    /* Aquí van el resto de tus estilos para el modo claro... */
+  }
+  
+  /* Estilos para el modo oscuro */
+  @media (prefers-color-scheme: dark) {
+    ion-item {
+      --ion-background-color: #ffffff;
+      --ion-text-color: #fff;
+      border-bottom: 1px solid #333;
+    }
+  
+    p {
+      font-size: 1rem;
+      color: #ffffff;
+    }
+  
+    .qr-image{
+      background-color: #000;
+    }
+  
+    /* Aquí van el resto de tus estilos para el modo oscuro... */
+  }
+  
+
+ion-buttons {
+display: flex;
+align-items: center;
+}
+
+ion-button {
+margin: 5px;
+}
+
+ion-title {
+font-size: 1.5rem;
+}
+
+h2 {
+font-size: 1.2rem;
+margin-bottom: 5px;
+}
+
+
+ion-list {
+margin: 10px;
+}
+

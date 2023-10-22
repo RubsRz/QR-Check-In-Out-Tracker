@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
         <ion-title>
-            Speedy transportation
+            QRInOut
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -9,19 +9,43 @@
 <ion-content [fullscreen]="true">
     <h1>Bienvenido {{usuarioService.usuarioLoggeado.nombre}}</h1>
 
-    <h2 *ngIf="usuarioService.usuarioLoggeado.rol=='conductor'">
-        Eres un conductor
-    </h2>
+    <div *ngIf="usuarioService.usuarioLoggeado.rol=='conductor'">
+        <h2>Eres un conductor</h2>
+        <ion-header>
+            <ion-toolbar color="primary">
+              <ion-title>Tu código QR</ion-title>
+            </ion-toolbar>
+          </ion-header>
+          
+            <div class="qr-container ion-text-center">
+              <!-- Coloca aquí el código QR generado para el usuario -->
+              <img class="qr-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Codigo_QR.svg/2048px-Codigo_QR.svg.png" alt="Código QR del usuario">
+            </div>
+          
+    </div>
 
-    <h2 *ngIf="usuarioService.usuarioLoggeado.rol=='admin'">
-        Eres un Admin
-    </h2>
+    <div *ngIf="usuarioService.usuarioLoggeado.rol=='admin'">
+        <h2>Eres un admin</h2>
 
-    <!-- <ion-header collapse="condense">
-      <ion-toolbar>
-          <ion-title size="large">Tab 1</ion-title>
-      </ion-toolbar>
-  </ion-header> -->
-    <!-- <h2>hola</h2> -->
-    <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Administrar Empleados</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+        <ion-list lines="full">
+          <ion-item *ngFor="let empleado of empleados">
+            <ion-label>
+              <h2>{{ empleado.nombre }}</h2>
+              <p>ID: {{ empleado._id }}</p>
+              <p>Vehículo: {{ empleado.vehiculo }}</p>
+            </ion-label>
+            <ion-buttons slot="end">
+              <ion-button color="primary" (click)="editarEmpleado(empleado)">Editar</ion-button>
+              <ion-button color="danger" (click)="confirmarEliminar(empleado)">Eliminar</ion-button>
+            </ion-buttons>
+          </ion-item>
+        </ion-list>
+    </div>
+
 </ion-content>

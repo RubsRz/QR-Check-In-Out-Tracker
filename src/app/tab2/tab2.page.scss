@@ -1,0 +1,54 @@
+
+  
+  #container {
+    margin: 20px;
+  }
+  
+  .scanned-info {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .scanned-info li {
+    margin: 5px 0;
+  }
+  
+  ion-button {
+    margin: 10px;
+  }
+  
+
+  .scan-icon {
+    font-size: 10rem; /* Tamaño del ícono (puedes ajustarlo) */
+    --ion-color: #fff;    
+    border: 3px solid #007bff; /* Borde alrededor del ícono */
+    border-radius: 12%; /* Hace que el borde sea circular */
+    padding: 2px; /* Espaciado interno del ícono */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse por encima */
+    transition: transform 0.2s; /* Agrega una animación de escala al hacer clic */
+    margin: 2px 0 12px;
+  }
+  
+  .scan-icon:hover {
+    transform: scale(1.2); /* Escala el ícono al hacer clic */
+  }
+  
+  .scanned-card {
+    border: 0.1px solid rgba(0, 0, 0, 0.092);
+    border-radius: 10px; /* Borde redondeado de la tarjeta */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    margin: 5px; /* Margen exterior de la tarjeta */
+    padding: 5px; /* Espaciado interno de la tarjeta */
+  }
+  
+  .scanned-info {
+    list-style-type: none; /* Elimina los puntos de la lista */
+    padding: 0; /* Elimina el espaciado interior predeterminado */
+  }
+  
+  .scanned-info li {
+    margin-bottom: 2px; /* Espaciado entre elementos de la lista */
+    color: #000000; /* Color del texto */
+  }
+  

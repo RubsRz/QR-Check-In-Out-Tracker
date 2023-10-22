@@ -10,8 +10,7 @@ import {HttpClient} from '@angular/common/http';
 export class UsuarioService {
   usuarioLoggeado:any
   vehiculosList:any[]
-  url="http://172.20.10.4:3000/api";
-  urlcasa="http://192.168.100.23:3000/api";
+  url='http://localhost:3001/api';
   // datetime:Date = new Date();
   transicion: string;
   fecha: Date;
@@ -20,11 +19,10 @@ export class UsuarioService {
 
   constructor(public http:HttpClient) {
     this.vehiculosList = []
-    this.getVehiculos()
   }
 
   getVehiculos(){
-    this.http.get(this.urlcasa+'/vehiculos/getVehiculos').subscribe(
+    this.http.get(this.url+'/vehiculos/getVehiculos').subscribe(
       (res:any)=>{
         //Aqui solo se ejecuta si respondió correctamente
         console.log('Vehiculos:',res)
@@ -44,7 +42,7 @@ export class UsuarioService {
       vehiculoId:this.vehiculoId,
     }
 
-    this.http.post(this.urlcasa+'/transiciones/addTransicion', nuevaTransicion).subscribe(
+    this.http.post(this.url+'/transiciones/addTransicion', nuevaTransicion).subscribe(
       (res:any)=>{
         //Aqui solo se ejecuta si respondió correctamente
         // this.getTransiciones()
@@ -67,7 +65,7 @@ export class UsuarioService {
   //     id: idFruta
   //   }
 
-  //   this.http.post('http://localhost:3000/api/frutas/deleteFruta', body).subscribe(
+  //   this.http.post('url='http://192.168.0.129/api';/frutas/deleteFruta', body).subscribe(
   //     (res:any)=>{
   //       //Aqui solo se ejecuta si respondió correctamente
   //       this.getFrutas()

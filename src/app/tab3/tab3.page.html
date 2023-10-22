@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
     <ion-toolbar>
         <ion-title>
             Tab 3
@@ -11,6 +11,48 @@
     <ion-button (click)="captureImage()">
         Click Picture
     </ion-button>
-    <!-- <img [src]="clickedImage" /> -->
 
-</ion-content>
+    <img [src]="usuarioService.usuarioLoggeado.imagen" />
+
+    <ion-button (click)="logOut()">LOGOUT</ion-button>
+
+
+</ion-content> -->
+
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Perfil</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-text-center">
+    <!-- Contenedor principal -->
+    <div class="profile-container">
+      <!-- Foto de perfil circular -->
+      <div class="profile-picture">
+        <img *ngIf="usuarioService.usuarioLoggeado.imagen" [src]="usuarioService.usuarioLoggeado.imagen" (click)="captureImage()" />
+        <img *ngIf="!usuarioService.usuarioLoggeado.imagen" src="https://cdn-icons-png.flaticon.com/512/6378/6378141.png" (click)="captureImage()" />
+      </div>
+      <div class="edit-button-container">
+        <div class="edit-button" (click)="captureImage()">
+          <ion-icon name="create"></ion-icon>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Datos del usuario -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ usuarioService.usuarioLoggeado.nombre }}</ion-card-title>
+        <ion-card-subtitle>{{ usuarioService.usuarioLoggeado.rol }}</ion-card-subtitle>
+      </ion-card-header>
+  
+      <ion-card-content>
+        <p>Vehículo: {{ usuarioService.usuarioLoggeado.idvehiculo }}</p>
+      </ion-card-content>
+    </ion-card>
+  
+    <!-- Botón de Cerrar Sesión -->
+    <ion-button expand="full" color="danger" (click)="logOut()">Cerrar Sesión</ion-button>
+  </ion-content>
+  

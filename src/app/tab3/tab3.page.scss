@@ -1,0 +1,54 @@
+
+  
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .profile-picture {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .profile-picture img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  .edit-button-container {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    transform: translate(115%, -100%); /* Ajusta la posición vertical */
+  }
+  
+  
+  .edit-button {
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px; /* Ajusta el tamaño del botón */
+    height: 45px; /* Ajusta el tamaño del botón */
+    cursor: pointer;
+  }
+  
+  .edit-button ion-icon {
+    font-size: 1.5rem; /* Ajusta el tamaño del ícono */
+    color: #333;
+  }
+  
+  ion-card {
+    margin: 10px;
+  }
+  
+  ion-button {
+    margin: 20px;
+  }
+  

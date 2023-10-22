@@ -13,10 +13,4 @@ export class SettingsPage implements OnInit {
   ngOnInit() {
   }
 
-
-  logOut(){
-    localStorage.removeItem('userRutas');
-    this.rutas.navigate(['/login']);
-  }
-
 }

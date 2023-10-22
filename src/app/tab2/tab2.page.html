@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
     <ion-toolbar>
         <ion-title *ngIf="service.usuarioLoggeado.rol=='admin'">
             Registrar Transición
@@ -43,4 +43,58 @@
 
     <ion-button (click)="saveDate()">SAVE DATE</ion-button>
 
+</ion-content> -->
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title *ngIf="service.usuarioLoggeado.rol=='admin'">Registrar Transición</ion-title>
+    <ion-title *ngIf="service.usuarioLoggeado.rol=='conductor'">Mis Transiciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-text-center">
+  <div id="container">
+    <ion-icon name="qr-code-outline" class="scan-icon" (click)="barcodeScanner()"></ion-icon>
+    <ion-card class="scanned-card" *ngIf="scannedOutput != ''">
+      <ion-card-content>
+        <ul class="scanned-info">
+          <li><strong>Nombre del conductor:</strong> {{scannedOutput.conductor}}</li>
+          <li><strong>Marca del vehículo:</strong> {{scannedOutput.marca}}</li>
+          <li><strong>Modelo del vehículo:</strong> {{scannedOutput.modelo}}</li>
+          <li><strong>Placa del vehículo:</strong> {{scannedOutput.placa}}</li>
+          <li><strong>Color del vehículo:</strong> {{scannedOutput.color}}</li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
+  </div>  
+
+  <ion-item>
+    <ion-label>Fecha</ion-label>
+    <ion-input placeholder="Fecha" value="{{ date | date: 'dd MMM yyyy, HH:mm' }}" id="date" class="ion-text-end"></ion-input>
+    <ion-popover trigger="date" size="cover">
+      <ng-template>
+        <ion-datetime presentation="time-date" [(ngModel)]="date" locale="sl-SI"></ion-datetime>
+      </ng-template>
+    </ion-popover>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Transición</ion-label>
+    <ion-select [(ngModel)]="transicion">
+      <ion-select-option value="Entrada">Entrada</ion-select-option>
+      <ion-select-option value="Salida">Salida</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button (click)="saveDate()" expand="full" color="success">Guardar Fecha</ion-button>
 </ion-content>
+
+    <!-- <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime
+        displayFormat="DD MMM YYYY, HH:mm"
+        [(ngModel)]="date"
+        locale="es"
+        class="ion-text-end"
+      ></ion-datetime>
+    </ion-item> -->

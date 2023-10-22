@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { UsuarioService } from '../services/usuario.service';
+
 
 @Component({
   selector: 'app-tab3',
@@ -7,8 +11,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  url='http://localhost:3001/api';
 
-  constructor(private camera:Camera) {}
+  constructor(private camera:Camera, public http:HttpClient, private rutas:Router, public usuarioService:UsuarioService) {}
 
   captureImage(){
     let options: CameraOptions = {
@@ -17,17 +22,42 @@ export class Tab3Page {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
-
+  
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      // this.clickedImage = base64Image;
+  
+      // Obtén el ID del LocalStorage
+      let userRutas = JSON.parse(localStorage.getItem('userRutas'));
+      let id = userRutas.id;
+  
+      // Crear el objeto que se enviará en el cuerpo de la petición
+      let imageObject = {
+        imagen: base64Image,
+        id: id
+      }
+
+      console.log(imageObject)
+  
+      // Enviar la petición HTTP POST
+      this.http.post(this.url+'/registros/updateRegistro', imageObject).subscribe(
+        (res:any)=>{
+          console.log(res);
+          alert("Imagen actualizada satisfactoriamente");
+        },
+        err=>{
+          alert("No se pudo enviar la imagen");
+        }
+      );
     }, (err) => {
       console.log(err);
-      // Handle error
     });
-
+  }
+  
+  logOut(){
+    localStorage.removeItem('userRutas');
+    this.rutas.navigate(['/login']);
   }
 
 }
