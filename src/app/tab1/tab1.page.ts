@@ -9,18 +9,47 @@ import { UsuarioService } from '../services/usuario.service';
 })
 export class Tab1Page implements OnInit {
   empleados: any[];
-  url='http://localhost:3001/api';
-
+  url='http://192.168.1.11:3001/api';
+  empleadoEnEdicion: any; // Empleado en modo de edición
+  isEditing = false; // Indica si estamos en modo de edición
   constructor(private http: HttpClient, private usuarioService: UsuarioService) {
     this.empleados = [];
   }
 
-  ngOnInit() {
-    this.obtenerEmpleados();
+  ionViewWillEnter() {
+    // Limpia los empleados existentes
+    this.empleados = [];
+  
+    // Crea una nueva Promesa que se resuelve cuando se ha recuperado el 'id' de 'localStorage'
+    new Promise((resolve, reject) => {
+      const userRutas = JSON.parse(localStorage.getItem('userRutas'));
+  
+      // Comprueba si 'userRutas' existe y tiene una propiedad 'id'
+      if (userRutas && userRutas.id) {
+        resolve(userRutas.id);
+      } else {
+        reject('No se encontró id en userRutas');
+      }
+    })
+    .then((id) => {
+      // Cuando la Promesa se resuelve, llama a 'obtenerEmpleados()' con el 'id'
+      this.obtenerEmpleados(id);
+    })
+    .catch((error) => {
+      // Si algo sale mal, registra el error
+      console.error(error);
+    });
   }
 
-  obtenerEmpleados() {
-    this.http.get<any[]>(this.url + '/registros/getEmpleados').subscribe(
+  ngOnInit() {
+  }
+  
+  
+
+  obtenerEmpleados(id) {
+    // const { id } = JSON.parse(localStorage.getItem('userRutas'));
+
+    this.http.get<any[]>(this.url + '/registros/getEmpleados/' + id).subscribe(
       (res) => {
         console.log(res);
         this.empleados = res;
@@ -30,5 +59,21 @@ export class Tab1Page implements OnInit {
       }
     );
   }
-  
+
+  // Iniciar edición de un empleado
+  editarEmpleado(empleado) {
+    this.empleadoEnEdicion = { ...empleado }; // Clonar el empleado para no modificar el original
+    this.isEditing = true;
+  }
+
+  // Guardar los cambios al empleado
+  guardarCambios() {
+    // Realiza aquí la lógica para guardar los cambios en el servidor
+    // this.http.post(...);
+    
+    // Desactiva el modo de edición
+    this.isEditing = false;
+    console.log("Guardar los cambios de" + this.empleadoEnEdicion.nombre)
+
+  }
 }

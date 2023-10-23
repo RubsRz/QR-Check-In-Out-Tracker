@@ -11,7 +11,7 @@ import { UsuarioService } from '../services/usuario.service';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  url='http://localhost:3001/api';
+  url='http://192.168.1.11:3001/api';
 
   constructor(private camera:Camera, public http:HttpClient, private rutas:Router, public usuarioService:UsuarioService) {}
 

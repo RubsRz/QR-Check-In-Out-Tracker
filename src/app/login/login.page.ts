@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   username: string;
   password: string;
   registrosList:any[]
-  url='http://localhost:3001/api';
+  url='http://192.168.1.11:3001/api';
 
 
   constructor(private router: Router, public service:UsuarioService, public http:HttpClient) { }

@@ -33,19 +33,47 @@
         </ion-toolbar>
       </ion-header>
 
-        <ion-list lines="full">
-          <ion-item *ngFor="let empleado of empleados">
-            <ion-label>
-              <h2>{{ empleado.nombre }}</h2>
-              <p>ID: {{ empleado._id }}</p>
-              <p>Vehículo: {{ empleado.vehiculo }}</p>
-            </ion-label>
-            <ion-buttons slot="end">
-              <ion-button color="primary" (click)="editarEmpleado(empleado)">Editar</ion-button>
-              <ion-button color="danger" (click)="confirmarEliminar(empleado)">Eliminar</ion-button>
-            </ion-buttons>
-          </ion-item>
-        </ion-list>
+      <ion-list lines="full">
+        <ion-item *ngFor="let empleado of empleados">
+          <ion-label>
+            <h2>{{ empleado.nombre }}</h2>
+            <small>ID: {{ empleado._id }}</small>
+            <h3>Vehículo: {{ empleado.id_vehiculo }}</h3>
+            <small>{{empleado.vehiculo_marca}} {{empleado.vehiculo_modelo}} {{empleado.vehiculo_anio}}</small>
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button color="primary" (click)="editarEmpleado(empleado)">Editar</ion-button>
+            <ion-button color="danger" (click)="confirmarEliminar(empleado)">Eliminar</ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+      
+      
+      
+
+        <div class="edit-form" *ngIf="isEditing">
+          <!-- Formulario de edición -->
+          <ion-card>
+            <ion-card-content>
+              <ion-item>
+                <ion-label>Nombre:</ion-label>
+                <ion-input [(ngModel)]="empleadoEnEdicion.nombre"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Vehículo:</ion-label>
+                <ion-select [(ngModel)]="empleadoEnEdicion.vehiculo">
+                  <ion-select-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo">
+                    {{ vehiculo }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-card-content>
+            <ion-button (click)="guardarCambios()">Guardar Cambios</ion-button>
+          </ion-card>
+        </div>
+
+
+
     </div>
 
 </ion-content>
