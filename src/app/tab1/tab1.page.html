@@ -24,19 +24,21 @@
           
     </div>
 
+
+
+    <div class="blur-background" *ngIf="isEditing"></div>
+    
     <div *ngIf="usuarioService.usuarioLoggeado.rol=='admin'">
         <h2>Eres un admin</h2>
 
-      <ion-header>
-        <ion-toolbar color="primary">
-          <ion-title>Administrar Empleados</ion-title>
-        </ion-toolbar>
-      </ion-header>
+        <div class="table-title">
+          <h3>Administrar Empleados</h3>
+        </div>
 
       <ion-list lines="full">
         <ion-item *ngFor="let empleado of empleados">
           <ion-label>
-            <h2>{{ empleado.nombre }}</h2>
+            <h2>{{ empleado.nombre }} {{ empleado.apellidos }} </h2>
             <small>ID: {{ empleado._id }}</small>
             <h3>Vehículo: {{ empleado.id_vehiculo }}</h3>
             <small>{{empleado.vehiculo_marca}} {{empleado.vehiculo_modelo}} {{empleado.vehiculo_anio}}</small>
@@ -60,15 +62,25 @@
                 <ion-input [(ngModel)]="empleadoEnEdicion.nombre"></ion-input>
               </ion-item>
               <ion-item>
+                <ion-label>Apellidos:</ion-label>
+                <ion-input [(ngModel)]="empleadoEnEdicion.apellidos"></ion-input>
+              </ion-item>
+              <ion-item>
                 <ion-label>Vehículo:</ion-label>
-                <ion-select [(ngModel)]="empleadoEnEdicion.vehiculo">
-                  <ion-select-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo">
-                    {{ vehiculo }}
+                <ion-select [(ngModel)]="empleadoEnEdicion.id_vehiculo">
+                  <ion-select-option [value]="empleadoEnEdicion.id_vehiculo">
+                    {{ empleadoEnEdicion.id_vehiculo }} {{ empleadoEnEdicion.vehiculo_marca }}
+                  </ion-select-option>
+                  <ion-select-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo._id">
+                    {{ vehiculo._id }} {{ vehiculo.marca }} {{ vehiculo.modelo }}
                   </ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-card-content>
-            <ion-button (click)="guardarCambios()">Guardar Cambios</ion-button>
+            <div style="display: flex; justify-content: flex-end;">
+              <ion-button (click)="guardarCambios()" color="primary">Guardar Cambios</ion-button>
+              <ion-button (click)="cancelar()" color="danger">Cancelar</ion-button>
+            </div>
           </ion-card>
         </div>
 

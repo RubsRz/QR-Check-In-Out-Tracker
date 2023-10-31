@@ -14,6 +14,10 @@
     .qr-image{
       background-color: #fff;
     }
+
+    .table-title {
+      background-color: #5b79ff;
+    }
   
     /* Aquí van el resto de tus estilos para el modo claro... */
   }
@@ -33,6 +37,15 @@
   
     .qr-image{
       background-color: #000;
+    }
+
+    .table-title {
+      background-color: #001664;
+      padding: 10px;
+      // : 0.5px solid #ccc;
+      font-weight: bold;
+      font-size: 22px;
+      text-align: center;
     }
   
     /* Aquí van el resto de tus estilos para el modo oscuro... */
@@ -70,4 +83,22 @@ margin: 10px;
   transform: translate(-50%, -50%);
   z-index: 999;
   width: 100%;
+}
+
+.table-title {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 22px;
+  text-align: center;
+}
+
+.blur-background {
+  backdrop-filter: blur(5px);
+  // background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10; /* Asegúrate de que el z-index sea mayor que el contenido de la página */
 }

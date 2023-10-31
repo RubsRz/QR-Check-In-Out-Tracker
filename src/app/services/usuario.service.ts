@@ -10,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 export class UsuarioService {
   usuarioLoggeado:any
   vehiculosList:any[]
-  url='http://192.168.1.11:3001/api';
+  url='http://192.168.0.227:3001/api';
   // datetime:Date = new Date();
   transicion: string;
   fecha: Date;
