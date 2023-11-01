@@ -30,7 +30,7 @@
     <div class="profile-container">
       <!-- Foto de perfil circular -->
       <div class="profile-picture">
-        <img *ngIf="usuarioService.usuarioLoggeado.imagen" [src]="usuarioService.usuarioLoggeado.imagen" (click)="captureImage()" />
+        <img *ngIf="usuarioService.usuarioLoggeado.imagen" [src]="usuarioService.usuarioLoggeado.imagen" />
         <img *ngIf="!usuarioService.usuarioLoggeado.imagen" src="https://cdn-icons-png.flaticon.com/512/6378/6378141.png" (click)="captureImage()" />
       </div>
       <div class="edit-button-container">
@@ -47,12 +47,13 @@
         <ion-card-subtitle>{{ usuarioService.usuarioLoggeado.rol }}</ion-card-subtitle>
       </ion-card-header>
   
-      <ion-card-content>
+      <ion-card-content *ngIf="usuarioService.usuarioLoggeado.rol!='admin'">
         <p>Vehículo: {{ usuarioService.usuarioLoggeado.idvehiculo }}</p>
       </ion-card-content>
     </ion-card>
   
     <!-- Botón de Cerrar Sesión -->
     <ion-button expand="full" color="danger" (click)="logOut()">Cerrar Sesión</ion-button>
+ 
   </ion-content>
   

@@ -11,9 +11,9 @@ import { UsuarioService } from '../services/usuario.service';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  url='http://192.168.0.227:3001/api';
+  url='http://192.168.1.19:3001/api';
 
-  constructor(private camera:Camera, public http:HttpClient, private rutas:Router, public usuarioService:UsuarioService) {}
+  constructor(private camera:Camera, public http:HttpClient, private rutas:Router, public usuarioService:UsuarioService) {  }
 
   captureImage(){
     let options: CameraOptions = {
@@ -37,13 +37,16 @@ export class Tab3Page {
         imagen: base64Image,
         id: id
       }
-
-      console.log(imageObject)
   
       // Enviar la petición HTTP POST
       this.http.post(this.url+'/registros/updateRegistro', imageObject).subscribe(
         (res:any)=>{
+
           console.log(res);
+          this.usuarioService.usuarioLoggeado.imagen = base64Image;
+          userRutas.imagen = base64Image;
+
+        // Recarga la página para reflejar los cambios
           alert("Imagen actualizada satisfactoriamente");
         },
         err=>{
@@ -59,5 +62,7 @@ export class Tab3Page {
     localStorage.removeItem('userRutas');
     this.rutas.navigate(['/login']);
   }
+
+
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioService } from '../services/usuario.service';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab1',
@@ -9,11 +11,11 @@ import { UsuarioService } from '../services/usuario.service';
 })
 export class Tab1Page implements OnInit {
   empleados: any[];
-  url='http://192.168.0.227:3001/api';
+  url='http://192.168.1.19:3001/api';
   empleadoEnEdicion: any; // Empleado en modo de edición
   isEditing = false; // Indica si estamos en modo de edición
   vehiculos: any[];
-  constructor(private http: HttpClient, private usuarioService: UsuarioService) {
+  constructor(private http: HttpClient, private usuarioService: UsuarioService, private alertController: AlertController) {
     this.empleados = [];
   }
 
@@ -104,4 +106,47 @@ export class Tab1Page implements OnInit {
     // console.log("Guardar los cambios de " + this.empleadoEnEdicion._id)
 
   }
+
+  async confirmarEliminar(empleado) {
+    const alert = await this.alertController.create({
+      header: 'Confirmación',
+      message: '¿Estás seguro de que deseas eliminar a este empleado?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            // Acción al cancelar la eliminación (puede ser vacía o mostrar un mensaje).
+            console.log('Eliminación cancelada');
+          },
+        },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            // Acción para eliminar al empleado
+            this.eliminarEmpleado(empleado);
+          },
+        },
+      ],
+    });
+  
+    await alert.present();
+  }
+  
+  
+  eliminarEmpleado(empleado) {
+    
+      // Realiza aquí la lógica para guardar los cambios en el servidor
+      this.http.post(this.url+'/registros/deleteEmpleado', empleado).subscribe(
+        (res:any)=>{
+          console.log(res)
+          location.reload();
+        },
+        err=>{
+          alert("No se puedo eliminar el empleado")
+        }
+      )
+
+  }
+  
 }
