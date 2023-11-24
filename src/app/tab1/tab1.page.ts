@@ -11,12 +11,16 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab1Page implements OnInit {
   empleados: any[];
-  url='http://192.168.1.19:3001/api';
+  url='http://192.168.1.15:3001/api';
   empleadoEnEdicion: any; // Empleado en modo de edición
   isEditing = false; // Indica si estamos en modo de edición
   vehiculos: any[];
+  infoqr: any;
+
+
   constructor(private http: HttpClient, private usuarioService: UsuarioService, private alertController: AlertController) {
     this.empleados = [];
+    // this.infoqr = 'hola'
   }
 
   ionViewWillEnter() {
@@ -37,6 +41,7 @@ export class Tab1Page implements OnInit {
     .then((id) => {
       // Cuando la Promesa se resuelve, llama a 'obtenerEmpleados()' con el 'id'
       this.obtenerEmpleados(id);
+      this.getRegistro()
     })
     .catch((error) => {
       // Si algo sale mal, registra el error
@@ -47,6 +52,29 @@ export class Tab1Page implements OnInit {
   ngOnInit() {
   }
   
+  getRegistro(){
+      const { id } = JSON.parse(localStorage.getItem('userRutas'));
+
+      if (!id.startsWith('CR')) {
+        // Hacer algo si el id no comienza con 'CD'
+        console.log('El id no comienza con CR');
+        return;
+      } else {
+        // Hacer algo si el id comienza con 'CD'
+        console.log('El id comienza con CR');
+        
+        
+        this.http.get<any[]>(this.url + '/registros/getRegistro/' + id).subscribe(
+          (res) => {
+            console.log("la info de este empleado es", res);
+            this.infoqr = JSON.stringify(res)
+          },
+          (err) => {
+            console.error('Error al obtener su registro:', err);
+          }
+          );
+        }
+  }
   
 
   obtenerEmpleados(id) {

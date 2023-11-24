@@ -52,17 +52,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-text-center">
+<ion-content [fullscreen]="true" class="ion-text-center" *ngIf="service.usuarioLoggeado.rol=='admin'">
   <div id="container">
     <ion-icon name="qr-code-outline" class="scan-icon" (click)="barcodeScanner()"></ion-icon>
     <ion-card class="scanned-card" *ngIf="scannedOutput != ''">
       <ion-card-content>
         <ul class="scanned-info">
-          <li><strong>Nombre del conductor:</strong> {{scannedOutput.conductor}}</li>
-          <li><strong>Marca del vehículo:</strong> {{scannedOutput.marca}}</li>
-          <li><strong>Modelo del vehículo:</strong> {{scannedOutput.modelo}}</li>
-          <li><strong>Placa del vehículo:</strong> {{scannedOutput.placa}}</li>
-          <li><strong>Color del vehículo:</strong> {{scannedOutput.color}}</li>
+          <li><strong>ID del conductor:</strong> {{scannedOutput._id}} </li>
+          <li><strong>Nombre del conductor:</strong> {{scannedOutput.nombre}} {{scannedOutput.apellidos}}</li>
+          <li><strong>Email del conductor:</strong> {{scannedOutput.email}}</li>
+          <li><strong>ID del vehiculo:</strong> {{scannedOutput.id_vehiculo}}</li>
+          <li><strong>Datos del vehículo:</strong>
+              <p>{{scannedOutput.vehiculo_marca}} {{scannedOutput.vehiculo_modelo}} {{scannedOutput.vehiculo_anio}}</p> 
+              <p>{{scannedOutput.vehiculo_color}} {{scannedOutput.vehiculo_placas}}</p>
+          </li>
         </ul>
       </ion-card-content>
     </ion-card>
@@ -88,6 +91,52 @@
 
   <ion-button (click)="saveDate()" expand="full" color="success">Guardar</ion-button>
 </ion-content>
+
+
+
+<ion-content [fullscreen]="true" class="ion-text-center" *ngIf="service.usuarioLoggeado.rol=='conductor'">
+
+  <ion-list lines="full">
+    <ion-item *ngFor="let transicion of transiciones" style="width: 100%;">
+      <ion-card class="custom-card" style="width: 100%;" (click)="expandirDetalles(transicion)">
+        <ion-card-content class="ion-text-center" style="position: relative;">
+          <ion-card-subtitle>{{ transicion.fecha }}</ion-card-subtitle>
+          <ion-card-title>{{ transicion.transicion }}</ion-card-title>
+          <ion-icon [name]="transicion.transicion === 'Entrada' ? 'log-in-outline' : 'log-out-outline'" 
+          [ngStyle]="{'color': transicion.transicion === 'Entrada' ? 'green' : 'red', 'font-size': '2rem', 'margin-top': '10px'}">
+</ion-icon>
+          <!-- <img [src]="transicion.imagen" alt="Imagen de transición" style="max-width: 100%; height: auto; margin-top: 10px;"> Imagen relacionada -->
+          <div class="detalles" [style.display]="transicion.expandido ? 'block' : 'none'">
+            <!-- Detalles adicionales aquí -->
+            <p>{{ transicion.conductorId }}</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+  
+
+  <script>
+    function expandirDetalles(card) {
+      console.log("conductorId:")
+      const detalles = card.querySelector('.detalles');
+      detalles.style.display = detalles.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function realizarAccion(button) {
+      console.log('realiza')
+      // Lógica para la acción
+      console.log('Acción realizada');
+    }
+  </script>
+
+</ion-content>
+
+
+
+
+
+
 
     <!-- <ion-item>
       <ion-label>Fecha</ion-label>

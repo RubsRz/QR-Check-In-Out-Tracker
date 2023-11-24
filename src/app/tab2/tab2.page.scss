@@ -49,6 +49,18 @@
   
   .scanned-info li {
     margin-bottom: 2px; /* Espaciado entre elementos de la lista */
-    color: #000000; /* Color del texto */
+    color: #ffffff; /* Color del texto */
+  }
+  
+
+  
+  /* Estilos para el modo oscuro */
+  @media (prefers-color-scheme: light) {
+      
+    .scanned-info li {
+      margin-bottom: 2px; /* Espaciado entre elementos de la lista */
+      color: #000000; /* Color del texto */
+    }
+    /* Aquí van el resto de tus estilos para el modo oscuro... */
   }
   

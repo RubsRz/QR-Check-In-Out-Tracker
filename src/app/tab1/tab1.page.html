@@ -19,7 +19,8 @@
           
             <div class="qr-container ion-text-center">
               <!-- Coloca aquí el código QR generado para el usuario -->
-              <img class="qr-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Codigo_QR.svg/2048px-Codigo_QR.svg.png" alt="Código QR del usuario">
+              <!-- <img class="qr-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Codigo_QR.svg/2048px-Codigo_QR.svg.png" alt="Código QR del usuario"> -->
+              <qrcode [qrdata]="infoqr" [width]="400"></qrcode>
             </div>
           
     </div>

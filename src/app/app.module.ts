@@ -11,11 +11,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { ZBar } from '@ionic-native/zbar/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 
+import { QRCodeModule } from 'angularx-qrcode'
+
+import * as moment from 'moment';
+
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, QRCodeModule],
   providers: [
     Camera,ZBar,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
