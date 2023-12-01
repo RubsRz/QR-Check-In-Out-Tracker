@@ -46,9 +46,10 @@
         <ion-card-title>{{ usuarioService.usuarioLoggeado.nombre }}</ion-card-title>
         <ion-card-subtitle>{{ usuarioService.usuarioLoggeado.rol }}</ion-card-subtitle>
       </ion-card-header>
-  
-      <ion-card-content *ngIf="usuarioService.usuarioLoggeado.rol!='admin'">
-        <p>Vehículo: {{ usuarioService.usuarioLoggeado.idvehiculo }}</p>
+      
+      <ion-card-content>
+        <p style="font-size: 12px;">ID de usuario: {{ usuarioService.usuarioLoggeado.id }}</p>
+        <p style="font-size: 12px;" *ngIf="usuarioService.usuarioLoggeado.rol!='admin'">ID de vehículo: {{ usuarioService.usuarioLoggeado.id_vehiculo }}</p>
       </ion-card-content>
     </ion-card>
   

@@ -16,7 +16,7 @@ export class Tab2Page {
   date:string|Date|String|any;
   dateFormat: Date|String;
   transicion: string;
-  transiciones:any[]
+  transiciones:any;
 
   constructor(public service:UsuarioService, private zbarPlugin: ZBar,  public alertController: AlertController) {
     this.optionZbar = {
@@ -26,8 +26,7 @@ export class Tab2Page {
     this.scannedOutput='';
   }
 
-  ionViewWillEnter() {
-    this.service.getTransiciones()
+  async ionViewWillEnter() {
     this.transiciones = this.service.transicionesList
     console.log(this.transiciones)
   }
@@ -76,13 +75,8 @@ export class Tab2Page {
 
   expandirDetalles(transicion: any) {
     // Lógica para expandir detalles (si es necesario)
-    console.log('Detalles expandidos:', transicion);
+    // console.log('Detalles expandidos:', transicion);
     transicion.expandido = !transicion.expandido; // Cambia el estado de expandido
-  }
-
-  realizarAccion(transicion: any) {
-    // Lógica para realizar la acción (si es necesario)
-    console.log('Acción realizada:', transicion);
   }
 
 

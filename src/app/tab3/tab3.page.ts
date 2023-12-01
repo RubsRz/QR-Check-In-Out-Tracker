@@ -11,7 +11,7 @@ import { UsuarioService } from '../services/usuario.service';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  url='http://192.168.1.15:3001/api';
+    url='http://192.168.0.239:3001/api';
 
   constructor(private camera:Camera, public http:HttpClient, private rutas:Router, public usuarioService:UsuarioService) {  }
 
@@ -46,8 +46,11 @@ export class Tab3Page {
           this.usuarioService.usuarioLoggeado.imagen = base64Image;
           userRutas.imagen = base64Image;
 
-        // Recarga la página para reflejar los cambios
-          alert("Imagen actualizada satisfactoriamente");
+          // Actualiza la imagen en el localStorage
+          localStorage.setItem('userRutas', JSON.stringify(userRutas));
+
+        // // Recarga la página para reflejar los cambios
+        //   alert("Imagen actualizada satisfactoriamente");
         },
         err=>{
           alert("No se pudo enviar la imagen");

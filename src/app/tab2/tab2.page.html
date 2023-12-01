@@ -96,39 +96,29 @@
 
 <ion-content [fullscreen]="true" class="ion-text-center" *ngIf="service.usuarioLoggeado.rol=='conductor'">
 
-  <ion-list lines="full">
-    <ion-item *ngFor="let transicion of transiciones" style="width: 100%;">
+  <ion-list lines="full" style="height: 100%;">
+    <ion-item *ngFor="let transicion of transiciones">
       <ion-card class="custom-card" style="width: 100%;" (click)="expandirDetalles(transicion)">
         <ion-card-content class="ion-text-center" style="position: relative;">
           <ion-card-subtitle>{{ transicion.fecha }}</ion-card-subtitle>
           <ion-card-title>{{ transicion.transicion }}</ion-card-title>
           <ion-icon [name]="transicion.transicion === 'Entrada' ? 'log-in-outline' : 'log-out-outline'" 
-          [ngStyle]="{'color': transicion.transicion === 'Entrada' ? 'green' : 'red', 'font-size': '2rem', 'margin-top': '10px'}">
-</ion-icon>
+          [ngStyle]="{'color': transicion.transicion === 'Entrada' ? 'green' : 'red', 'font-size': '2rem', 'margin-top': '10px'}"></ion-icon>
           <!-- <img [src]="transicion.imagen" alt="Imagen de transición" style="max-width: 100%; height: auto; margin-top: 10px;"> Imagen relacionada -->
+          <span style="font-size: 12px; color: rgba(66, 66, 213, 0.872);" [style.display]="transicion.expandido ? 'none' : 'block'">click para mas detalles</span>
           <div class="detalles" [style.display]="transicion.expandido ? 'block' : 'none'">
             <!-- Detalles adicionales aquí -->
-            <p>{{ transicion.conductorId }}</p>
+            <!-- <p>{{ transicion.conductorId }}</p> -->
+            <p>ID: {{ transicion._id }}</p>
+            <p>{{ transicion.Rnombre }} {{transicion.Rapellidos}} </p>
+            <p>{{ transicion.Vmarca }} {{transicion.Vmodelo}} {{transicion.Vanio}} {{transicion.Vcolor}} {{transicion.Vplacas}} </p>
+
           </div>
         </ion-card-content>
       </ion-card>
     </ion-item>
   </ion-list>
   
-
-  <script>
-    function expandirDetalles(card) {
-      console.log("conductorId:")
-      const detalles = card.querySelector('.detalles');
-      detalles.style.display = detalles.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function realizarAccion(button) {
-      console.log('realiza')
-      // Lógica para la acción
-      console.log('Acción realizada');
-    }
-  </script>
 
 </ion-content>
 

@@ -11,7 +11,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab1Page implements OnInit {
   empleados: any[];
-  url='http://192.168.1.15:3001/api';
+    url='http://192.168.0.239:3001/api';
   empleadoEnEdicion: any; // Empleado en modo de edición
   isEditing = false; // Indica si estamos en modo de edición
   vehiculos: any[];
@@ -19,6 +19,8 @@ export class Tab1Page implements OnInit {
 
 
   constructor(private http: HttpClient, private usuarioService: UsuarioService, private alertController: AlertController) {
+    console.log('entro al servicio desde tab1')
+    this.usuarioService.getTransiciones()
     this.empleados = [];
     // this.infoqr = 'hola'
   }
