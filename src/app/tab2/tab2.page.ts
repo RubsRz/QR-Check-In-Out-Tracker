@@ -27,6 +27,7 @@ export class Tab2Page {
   }
 
   async ionViewWillEnter() {
+    this.service.getTransiciones()
     this.transiciones = this.service.transicionesList
     console.log(this.transiciones)
   }
